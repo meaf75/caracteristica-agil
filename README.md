@@ -2,6 +2,10 @@
 
 ⚡⚡ You can see the live demo here: https://caracteristica-agil.vercel.app/ ⚡⚡
 
+
+[Demo video](https://youtu.be/VTAy_4l-rPY) ▶️
+
+
 ## Frontend
 
 Go to [DOCS](./frontend/README.md)
