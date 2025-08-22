@@ -13,9 +13,14 @@ func SetupRouter() *gin.Engine {
 	r := gin.Default()
 
 	frontendUrl := os.Getenv("FRONTEND_URL")
+	isProduction := len(os.Getenv("IS_PRODUCTION")) > 0
 
 	if frontendUrl == "" {
 		frontendUrl = "http://localhost:3000"
+	}
+
+	if isProduction {
+		gin.SetMode(gin.ReleaseMode)
 	}
 
 	r.Use(cors.New(cors.Config{
@@ -33,7 +38,7 @@ func main() {
 	r := SetupRouter()
 
 	// setup storage
-	storage, err := src.NewStorage("data/mortgage.db")
+	storage, err := src.NewStorage(os.Getenv("DATABASE_PATH"))
 	if err != nil {
 		log.Fatalf("could not init storage: %v", err)
 	}

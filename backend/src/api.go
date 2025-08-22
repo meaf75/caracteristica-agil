@@ -38,6 +38,11 @@ func RegisterRoutes(r *gin.Engine, storage *Storage) {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "could not fetch evaluations"})
 			return
 		}
+
+		if evals == nil {
+			evals = []EvaluationResult{} // Ensure we return an empty slice if no evaluations exist
+		}
+
 		c.JSON(http.StatusOK, evals)
 	})
 }
