@@ -13,9 +13,14 @@ func SetupRouter() *gin.Engine {
 	r := gin.Default()
 
 	frontendUrl := os.Getenv("FRONTEND_URL")
+	isProduction := len(os.Getenv("IS_PRODUCTION")) > 0
 
 	if frontendUrl == "" {
 		frontendUrl = "http://localhost:3000"
+	}
+
+	if isProduction {
+		gin.SetMode(gin.ReleaseMode)
 	}
 
 	r.Use(cors.New(cors.Config{
