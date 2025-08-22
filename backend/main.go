@@ -38,7 +38,7 @@ func main() {
 	r := SetupRouter()
 
 	// setup storage
-	storage, err := src.NewStorage("data/mortgage.db")
+	storage, err := src.NewStorage(os.Getenv("DATABASE_PATH"))
 	if err != nil {
 		log.Fatalf("could not init storage: %v", err)
 	}
